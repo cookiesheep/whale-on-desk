@@ -1,97 +1,64 @@
-# GPT Prompt Playbook — 出图操作手册 v2(经社区工作流验证)
+# GPT Prompt Playbook — 出图操作手册 v3(idle 验收后修订)
 
-配合 ChatGPT 会员网页版。你出图,我切片/校色/合成动画。
-基于 clawd-idle.gif 逐帧规格(ART_SPEC.md)+ 2025-26 社区验证的 AI 精灵图工作流
-(OpenAI 社区/chongdashu 工作流/Scenario 指南)。
+配套 ChatGPT 会员网页版使用。v3 变更:**权威参考图切换为 `docs/reference-whale.png`**
+(从已上线的 idle 帧导出,192×192、透明背景、8 色纯净);
+新增**禁装饰条款**(idle 出现了未被要求的海草);明确**GPT 自检不可信**规则。
 
-## 核心策略(经研究验证,别偏离)
+## 三条铁律(v2 起验证有效,v3 强化)
 
-1. **永远不要一次性生成大图集**——单次大 sheet 会重复姿势/丢帧。
-   正确顺序:先锁角色设计表 → 逐状态生成 → 最后 normalize 统一。
-2. **帧数预算**:idle + 1 个招牌状态用完整帧网格(8-16 帧);**其余状态只要 2-4 张关键帧**,动作(浮动/挤压/旋转)由代码补——clawd 官方主题指南也说自定义主题 4-12 帧就够。
-3. **双参考图技巧**:每次生成附两张图——①Master Sheet ②一张纯像素网格图(对齐锚),能显著减少帧漂移。
-4. **重试优于修复**:失败就重生成 2-3 次,比让模型"修"更快。
+1. **先简报后出图**:新会话先发完整项目简报(见仓库历史消息/简报模板),
+   GPT 确认理解后再逐状态下指令。
+2. **参考图用 `docs/reference-whale.png`**:每条状态指令都附它。
+   它是 idle 上线帧的干净版,比繁忙的设计表更容易被读对。
+   若环境读不了附件,文字设定就是锚——idle 鲸鱼与文字设定已验证吻合。
+3. **GPT 的技术自检一律不信**:idle 那次它声称"仅 9 色",实测 13+ 色
+   (三族绿海草、亮蓝高光、24 万半透明像素)。判断以我的像素扫描为准,
+   出图后直接把原始 PNG 交给流水线处理,不要依据自检筛选。
 
-## 第 0 步:Master Sheet(今天做)
-
-把下面整段发给 ChatGPT:
-
-```
-Create a character design sheet for WHALE, a chunky pixel-art desktop-pet whale.
-Flat 2D, single-pixel dark navy outline (#1A1030), exactly 8 colors
-(#1A1030 #23324D #17233A #3C5A86 #F2F5F9 #101623 #E58FA2 #BFE3FF),
-2-tone cel shading, light from top-left, NO anti-aliasing, NO gradients, NO dithering.
-Character: round egg-shaped whale body, white belly, tiny 3px tail fluke, one small
-side fin, small foam spout on top; eyes are 4px-tall dark ovals with one white
-highlight pixel each; kawaii chibi proportions.
-Layout: 4x2 grid turnaround (front / 3-4 left / side / 3-4 right / back),
-plus 3 expression close-ups (happy / sleepy / surprised),
-plus a palette swatch row with hex labels.
-Character occupies the SAME pixel height in every cell. Transparent background.
-```
-
-- 生成 3-5 个候选发我 → 我按 clawd 规格选优锁定。
-- 以后每次生成都带它 + 一句:"Use the EXACT same character as the reference image."
-
-## 第 1 步:招牌状态完整帧网格(只做 idle + celebrate 两个)
+## 状态指令模板(复制即用,附件 = reference-whale.png)
 
 ```
-Using the attached character sheet as reference 1 (and the pixel grid as reference 2
-for alignment), generate a sprite sheet: exactly 8 frames of [IDLE BREATHING],
-arranged as a single row, equal-size cells, character bottom-anchored on the same
-ground line in every frame, identical palette and scale in all frames
-(no zoom, no camera movement, no mirror flips), 1-pixel dark outline preserved.
-Each frame is one consecutive phase of the loop; frame 8 must match frame 1
-so the loop is seamless. Transparent background, no anti-aliasing, no new colors.
+生成 {状态}:8 帧动画,动作:{动作描述}。
+画面中只有鲸鱼和它自己的泡沫——不要海草、植物或任何装饰元素。
+使用附件角色(保持完全相同的角色、配色、描边粗细和比例)。
+遵守简报全部技术规格:横向一行 8 个等大正方形格子,底部对齐同一基准线,
+第 1 帧和第 8 帧完全相同保证无缝循环,
+只允许 8 色(#1A1030 #23324D #17233A #3C5A86 #F2F5F9 #101623 #E58FA2 #BFE3FF),
+背景纯洋红 #FF00FF,不要抗锯齿不要渐变,不缩放不镜像。
 ```
 
-- [IDLE BREATHING] 换成招牌动作时,替换动作描述(celebrate: upward jump with flip
-  at apex, squash on landing, happy open mouth, foam confetti)。
-- 失败两次 → 降级为关键帧模式(第 2 步),别死磕。
+## 状态队列(按此顺序出图)
 
-## 第 2 步:其余状态只要关键帧(2-4 张/状态)
+| 序 | 状态 | {动作描述} |
+|---|---|---|
+| 1 | ~~idle~~ | ✅ 已上线(9/10 验收通过) |
+| 2 | **celebrate** | 向上跳起,最高点小空翻,落地挤压变形,张嘴笑,泡沫彩带在周围迸开 |
+| 3 | **glass-tap** | 贴向格子右边缘,一只鳍抬起反复轻敲"玻璃",眼睛焦急圆睁,头顶冒琥珀色感叹号像素 |
+| 4 | **swim-fast** | 身体前倾快速游动,尾鳍快速摆动,身后拖两三个小速度泡泡 |
+| 5 | think | 静止漂浮,眼睛看向右上方,头顶一个带三个点的思考泡泡,轻微摆动 |
+| 6 | tool-run | 侧鳍像划水一样工作,眼神专注微眯,身旁一个小气泡里有一个像素扳手 |
+| 7 | sink | 缓缓下沉 3 像素,眼睛变成横线,头顶一个气泡上升,嘴巴难过地闭上 |
+| 8 | sleep | 趴在格子底部,头戴小睡帽,旁边飘起"Z z z"像素字母,极缓慢的呼吸起伏 |
+| 9 | poked-flail | 手舞足蹈地快速乱划,眼睛圆睁,身体小幅抖动 |
+| 10 | startled | 突然向上弹起 3 像素,带挤压拉伸,眼睛震惊放大,头顶冒几个惊讶像素 |
+| 11 | eat | 嘴巴朝飘来的小食物像素张开,最后两帧脸颊微鼓、满足地闭眼 |
+| 12 | nightcap | 头戴睡帽安静漂浮,偶尔眨眼(夜间叠加态,与 sleep 区分:不趴底) |
 
-```
-Edit: apply this exact character (reference image) into {N} key frames for [STATE].
-Preserve the character's identity, palette (exact hex list), outline weight,
-lighting direction, camera, and background.
-Do not mirror the pose; do not swap left/right assignments; left/right refer to the
-subject's own anatomical sides, not the viewer's.
-Do not generalize the pose into a similar pose. Keep all poses intact.
-```
+## 出图后的交接(零摩擦)
 
-状态关键帧描述(替换 [STATE] 时用):
-- swim-fast: leaned-forward swimming pose / mid-tail-beat pose
-- think: floating still, eyes up-right, thought bubble with 3 dots
-- tool-run: paddling fin, determined squint, small wrench bubble
-- glass-tap: pressed against right edge, fin raised tapping, wide worried eyes, amber pixels
-- sink: sinking 3px, flat-line eyes, one bubble rising
-- sleep: resting on bottom, nightcap, Zzz pixels
-- poked-flail: arms-flailing spread pose, startled round eyes
-- eat: mouth open toward food pixels / content closed-eyes cheeks-full
+1. 图存为 `D:\code\whale-on-desk\art\<状态名>.png`(如 `art/celebrate.png`,源图区,不进 npm 包)
+2. 告诉我状态名,我执行:
+   `node tools/process-sprites.mjs <状态> art/<状态>.png --frames 8 --cell 256`
+3. 流水线自动:切片 → 纯 Node 精确 8 色吸附 → 抠洋红 → 剔海草(若有)→ 无缝循环 GIF → 更新 manifest
+4. 刷新页面即生效(状态触发:对它说话=think,双击=poked-flail,等 10 分钟=sleep)
 
-## 第 3 步:normalize 统一(每状态生成完做一次)
-
-```
-Normalize the style, character consistency and size for this sprite sheet,
-keeping all the poses intact.
-```
-
-## 第 4 步:回传与命名
-
-- `master.png`、`idle.png`(整行帧)、`swim.png`(关键帧组)…发我时注明状态名。
-- 我负责:切片 → 色板吸附(杂色拉回 8 色)→ 对齐 → ffmpeg 合成循环 GIF → 代码动效叠加。
-
-## 失败模式速查
+## 已知坑与对策(v2 遗留,继续有效)
 
 | 问题 | 对策 |
 |---|---|
-| 色板漂移 | 出图后我统一 palette-snap;也可用 RetroDiffusion Pixel Art Fixer(免费网页) |
-| 糊边/抗锯齿 | 同上工具的 pixel-snap;渲染时 `image-rendering: pixelated` |
-| 帧数错/重复姿势 | 重试 2-3 次;仍失败降级关键帧模式 |
-| 左右手性画反 | 提示词里已有反镜像条款;渲染端 CSS `scaleX(-1)` 镜像兜底 |
-
-## 分工
-
-你:GPT 出图(第 0 步今天可跑),回传。
-我:风格审定 → 切片/校色/合成 → 状态机接线(已完成,8/8 测试过)→ 插件打包 → 发布。
+| 色板漂移/杂色 | 流水线吸附自动兜底 |
+| 糊边/抗锯齿 | 流水线像素对齐 |
+| 帧数错/重复姿势 | 重试 2-3 次优于让它修 |
+| 左右手性画反 | 模板反镜像条款;渲染端 CSS 镜像兜底 |
+| **GPT 加海草等装饰** | **模板已含禁令;漏网之鱼由流水线绿色通道规则剔除** |
+| **GPT 自检报告** | **一律不信,以像素扫描为准** |
