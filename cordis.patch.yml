@@ -1,0 +1,7 @@
+# whale-on-desk: pixel-art whale companion for the DeepSeek Harness web UI.
+# Fields: sleepAfterMinutes — idle time before the whale dozes off.
+- insert:
+    - id: whale
+      name: whale-on-desk
+      config:
+        sleepAfterMinutes: 10
