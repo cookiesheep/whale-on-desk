@@ -112,15 +112,19 @@ for (let i = 0; i < frames; i++) {
   const rgba = res.stdout
   for (let p = 0; p < cell * cell; p++) {
     const o = p * 4
-    if (snap) {
-      const [r, g, b] = nearest(rgba[o], rgba[o + 1], rgba[o + 2])
-      if (r === 0xff && g === 0x00 && b === 0xff) {
-        rgba[o + 3] = 0
-      } else {
-        rgba[o] = r; rgba[o + 1] = g; rgba[o + 2] = b; rgba[o + 3] = 255
-      }
-    } else if (rgba[o] === 0xff && rgba[o + 1] === 0x00 && rgba[o + 2] === 0xff) {
+    // Source alpha below half is already background (GPT exports partial alpha).
+    if (rgba[o + 3] < 128) { rgba[o + 3] = 0; continue }
+    const r = rgba[o]
+    const g = rgba[o + 1]
+    const b = rgba[o + 2]
+    // Green foliage (seaweed) flickers frame-to-frame: key it out with the
+    // background instead of keeping decoration the loop cannot hold steady.
+    if (snap && g > 140 && g > r + 60 && g > b + 60) { rgba[o + 3] = 0; continue }
+    const [nr, ng, nb] = nearest(r, g, b)
+    if (nr === 0xff && ng === 0x00 && nb === 0xff) {
       rgba[o + 3] = 0
+    } else {
+      rgba[o] = nr; rgba[o + 1] = ng; rgba[o + 2] = nb; rgba[o + 3] = 255
     }
   }
   writePng(path.join(workDir, `frame_${String(i).padStart(2, '0')}.png`), cell, cell, rgba)
