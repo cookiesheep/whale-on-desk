@@ -20,4 +20,12 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-      - run: npm publish --provenance --access public
+      # Skip gracefully when this version was already published from a laptop.
+      - id: published
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "whale-on-desk@$VERSION" version >/dev/null 2>&1; then
+            echo "already=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.published.outputs.already != 'true'
+        run: npm publish --provenance --access public

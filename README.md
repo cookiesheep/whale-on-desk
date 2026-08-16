@@ -1,5 +1,7 @@
 # whale-on-desk 🐳
 
+English | [中文](docs/README.zh.md)
+
 **A pixel-art whale companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 It swims while your agents work, blows bubbles for tool calls, and taps the glass when an approval is waiting.
 

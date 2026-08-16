@@ -1,5 +1,7 @@
 # whale-on-desk 🐳 鲸桌
 
+[English](../README.md) | 中文
+
 **给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的像素鲸鱼桌宠。**
 Agent 干活时它游泳,调工具时吐泡泡,**请求批准时贴着屏幕敲玻璃**。
 
