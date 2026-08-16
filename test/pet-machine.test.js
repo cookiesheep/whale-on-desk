@@ -30,11 +30,54 @@ test('failed turn sinks', () => {
   assert.equal(m.snapshot.state, 'sink')
 })
 
-test('streaming chunks mean thinking', () => {
+test('writing text swims fast; silent reasoning thinks', () => {
   const m = new PetMachine()
   m.push({ type: 'turn/start', turn: 1 })
   m.push({ type: 'assistant/chunk', turn: 1, step: 1, chunkType: 'text-delta' })
+  assert.equal(m.snapshot.state, 'swim-fast')
+  m.push({ type: 'assistant/chunk', turn: 1, step: 1, chunkType: 'reasoning-delta' })
   assert.equal(m.snapshot.state, 'think')
+})
+
+test('live work states survive the idle tick', () => {
+  const m = new PetMachine()
+  m.push({ type: 'tool/call', turn: 1, step: 1, name: 'bash' })
+  m.push({ type: 'session/idle', idleMs: 1000 })
+  assert.equal(m.snapshot.state, 'tool-run')
+})
+
+test('nightcap persists while idle and a step wakes it', () => {
+  const m = new PetMachine()
+  m.push({ type: 'clock/tick', hour: 3 })
+  m.push({ type: 'session/idle', idleMs: 1000 })
+  assert.equal(m.snapshot.state, 'nightcap')
+  m.push({ type: 'step/start' })
+  assert.equal(m.snapshot.state, 'swim-fast')
+})
+
+test('night hours do not interrupt active work', () => {
+  const m = new PetMachine()
+  m.push({ type: 'tool/call', turn: 1, step: 1, name: 'read' })
+  m.push({ type: 'clock/tick', hour: 2 })
+  assert.equal(m.snapshot.state, 'tool-run')
+})
+
+test('poking a nightcapped whale startles it back to the cap', () => {
+  const m = new PetMachine()
+  m.push({ type: 'clock/tick', hour: 3 })
+  m.push({ type: 'user/poke', doubleClick: false })
+  assert.equal(m.snapshot.state, 'startled')
+  assert.equal(m.clearTransient().state, 'nightcap')
+})
+
+test('force pins a state until cleared', () => {
+  const m = new PetMachine()
+  m.push({ type: 'turn/start', turn: 1 })
+  m.force('glass-tap')
+  m.push({ type: 'assistant/chunk', turn: 1, step: 1, chunkType: 'text-delta' })
+  assert.equal(m.snapshot.state, 'glass-tap')
+  m.force(null)
+  assert.equal(m.snapshot.state, 'swim-fast')
 })
 
 test('long idle sleeps; poking startles awake', () => {

@@ -42,7 +42,7 @@ dsh plugin --profile web add whale-on-desk
 dsh plugin --profile web remove whale-on-desk
 ```
 
-睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。
+睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。右键点鲸鱼有小菜单(静音 / 回到默认位置)。配置 `allowPreview: true` 会额外开启 `POST /whale/preview {"state":"glass-tap"}`(传 `{"state":null}` 恢复)——方便录演示和截图,默认关闭。
 
 ## 工作原理
 

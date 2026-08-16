@@ -42,7 +42,7 @@ Then open (or restart) the DSH web UI. That's it — no API key, no config.
 dsh plugin --profile web remove whale-on-desk
 ```
 
-Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10).
+Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10). Right-click the whale for a small menu (mute sounds / reset position). Setting `allowPreview: true` additionally exposes `POST /whale/preview {"state":"glass-tap"}` (clear with `{"state":null}`) — handy for demos and screenshots; off by default.
 
 ## How it works
 
