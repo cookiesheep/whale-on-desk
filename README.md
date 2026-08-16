@@ -1,27 +1,68 @@
-# whale-on-desk 鲸桌
+# whale-on-desk 🐳
 
-A pixel-art whale desktop companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
+**A pixel-art whale companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
+It swims while your agents work, blows bubbles for tool calls, and taps the glass when an approval is waiting.
 
-Your agents work — the whale reacts: it swims while a turn runs, thinks along with the
-model, blows bubbles for tool calls, **taps the glass when an approval is waiting**,
-celebrates when a task lands, and dozes off after ten quiet minutes.
+![status](https://img.shields.io/badge/status-early%20preview-orange) ![license](https://img.shields.io/badge/license-MIT-blue) ![dsh](https://img.shields.io/badge/DSH-plugin-4D6BFE)
+
+<!-- demo gif placeholder: docs/demo.gif — add once glass-tap art lands -->
+
+## What it does
+
+The whale lives in the corner of your DeepSeek Harness web UI and reacts to what your agents are doing:
+
+| Agent activity | Whale reaction |
+|---|---|
+| Turn running | swims fast 🏊 |
+| Model streaming | thinks along, thought bubble 💭 |
+| Tool call | blows a bubble with a friendly label (敲命令 / 读文件 / …) |
+| **Approval requested** | **presses against the glass, taps, amber pulse** 🔔 |
+| Turn completed | jumps with a flip and foam confetti 🎉 |
+| Turn failed | sinks, eyes flatline 😢 |
+| Context ~62% / ~82% full | feeding time — "还能吃一点 / 吃饱了" 🍤 |
+| Idle 10 minutes | dozes off 💤 |
+| 00:00–06:00 local | nightcap 🌙 |
+| You click / double-click it | squeak / startled flail (with sound) |
+
+Drag it anywhere — the position sticks. Tiny synthesized sounds, zero audio assets.
+
+## Install
+
+```sh
+dsh plugin --profile web add whale-on-desk
+```
+
+Then open (or restart) the DSH web UI. That's it — no API key, no config.
+
+## Uninstall / configure
+
+```sh
+dsh plugin --profile web remove whale-on-desk
+```
+
+Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10).
+
+## How it works
+
+- **Host half** (`lib/index.js`): a Cordis plugin listening to `session/event` (turns, chunks, tool calls, approvals — all durable session events) and folding them into a small state machine (`lib/pet-machine.mjs`). Exposes `/whale/state`, `/whale/poke`, `/whale/assets/*` on the DSH web server. Read-only: it never touches your sessions or files.
+- **Browser half** (`lib/client.js`): registers via the DSH shell module loader, mounts into the `shell.overlay` slot, renders the current state's sprite (500 ms poll), plays synthesized sounds, and persists its position.
+- **Art pipeline** (`tools/process-sprites.mjs`): AI-generated sprite sheets in, clean looping GIFs out — slicing, exact 8-color palette snapping (pure nearest-color math), magenta chroma-key, decoration removal.
+
+## Making your own states
+
+See [`docs/GPT_PROMPT_PLAYBOOK.md`](docs/GPT_PROMPT_PLAYBOOK.md) — the full workflow for generating new whale animations with an AI image tool, and the one-line pipeline command that turns a sheet into a live state.
+
+## Project layout
 
 ```
-Status: v0.0.1 live — placeholder whale swimming at http://127.0.0.1:3080 (art drops in next)
-Art style: clawd-style chunky pixel art (see docs/ART_SPEC.md)
-Ship plan: DSH web plugin first (one-line install), Electron overlay second
-Verified: boot graph ✓ /client.js ✓ /whale/state ✓ /whale/poke ✓ (8/8 state-machine tests)
+art/     source sprite sheets from the AI workflow (repo only)
+assets/  shipped runtime: state GIFs + manifest.json
+docs/    art spec, prompt playbook, canonical character reference
+lib/     plugin host half + browser half + state machine
+test/    state machine unit tests
+tools/   sprite processing pipeline + test grid generator
 ```
 
-## Repository layout
+## Credits & disclaimer
 
-- `docs/ART_SPEC.md` — the whale art direction, derived from frame-by-frame
-  analysis of the clawd-on-desk idle loop (style reference only, no assets copied).
-- `docs/GPT_PROMPT_PLAYBOOK.md` — prompt templates for AI-assisted sprite
-  generation with a locked palette and character sheet.
-- `src/states.ts` — pet state vocabulary, priorities, transient/durable split.
-- `src/mapper.ts` — pure fold from DSH session/approval events to pet state.
-
-## License
-
-MIT (planned). Whale art original; not affiliated with DeepSeek.
+Animation grammar and pixel discipline inspired by [clawd-on-desk](https://github.com/rullerzhou-afk/clawd-on-desk) (style reference only — no assets or code shared; clawd art is Anthropic's). Whale art generated with AI assistance. Not affiliated with DeepSeek. MIT licensed.
