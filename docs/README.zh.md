@@ -49,6 +49,10 @@ dsh plugin --profile web remove whale-on-desk
 
 睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。右键点鲸鱼有小菜单(静音 / 回到默认位置 / 换桌宠 / 隐藏——隐藏后双击右下角 🐳 恢复)。配置 `allowPreview: true` 会额外开启 `POST /whale/preview {"state":"glass-tap"}`(传 `{"state":null}` 恢复)——方便录演示和截图,默认关闭。
 
+## 水族馆模式
+
+右键鲸鱼 → **🐠 水族馆**,进入全屏水族箱:光束摇曳、气泡上浮,鲸鱼带着两条小伙伴自由巡游。按 Esc(或 ✕ 按钮)回到桌面伙伴模式。
+
 ## 自定义桌宠
 
 把一套精灵放进 `~/.dsh/whale-on-desk/pets/<名字>/`——一个把状态映射到 GIF 文件的 `manifest.json`,加上 GIF 本体:

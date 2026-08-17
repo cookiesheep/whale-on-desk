@@ -51,6 +51,10 @@ dsh plugin --profile web remove whale-on-desk
 
 Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10). Right-click the whale for a small menu (mute sounds / reset position / switch pet / hide — double-click the corner 🐳 to restore). Setting `allowPreview: true` additionally exposes `POST /whale/preview {"state":"glass-tap"}` (clear with `{"state":null}`) — handy for demos and screenshots; off by default.
 
+## Aquarium mode
+
+Right-click the whale → **🐠 水族馆** for a fullscreen tank: light rays, a rising bubble curtain, and the whale swimming free with a couple of smaller companions. Esc (or the ✕ button) brings back the companion.
+
 ## Custom pets
 
 Drop a sprite pack into `~/.dsh/whale-on-desk/pets/<name>/` — a `manifest.json` mapping states to GIF files, plus the GIFs:
