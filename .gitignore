@@ -5,3 +5,4 @@ assets/.build/
 .omx/
 .tmp-demo/
 *.local.md
+test-grid.png
