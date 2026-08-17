@@ -34,6 +34,8 @@ Drag it anywhere — the position sticks. Tiny synthesized sounds, zero audio as
 dsh plugin --profile web add whale-on-desk
 ```
 
+**[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)** (the community Electron app) works too — it runs the official web client with the same plugin system and DSH home. From the app tray, open **Open DSH Terminal** and run `dsh plugin add whale-on-desk`, then restart DSH Desktop.
+
 Then open (or restart) the DSH web UI. That's it — no API key, no config.
 
 ## Uninstall / configure

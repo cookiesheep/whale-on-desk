@@ -36,6 +36,8 @@ dsh plugin --profile web add whale-on-desk
 
 打开(或重启)DSH 网页界面即可。无需 API Key,无需配置。
 
+**[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)**(社区 Electron 桌面版)同样支持——它跑的就是官方 Web 客户端,插件体系和 DSH home 与网页版一致。在应用托盘打开 **Open DSH Terminal**,执行 `dsh plugin add whale-on-desk`,重启 DSH Desktop 即可。
+
 ## 卸载 / 配置
 
 ```sh
