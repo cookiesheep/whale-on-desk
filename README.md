@@ -66,6 +66,10 @@ Install either once (`dsh plugin --profile web add dsh-plugin-toggle`), and day-
 
 Right-click the whale → **🐠 水族馆** for a fullscreen tank: painted water plates (auto light/dark), seaweed, a progress coral that grows with your tool calls, token fish counting the turn's tools — and the whale itself mirrors the agent state, tapping the glass (buoy blinking) when an approval waits. The water layer stays translucent and click-through: you keep coding inside it. Esc (or the ✕ button) brings back the companion.
 
+## Pet forge (AI-crafted pets)
+
+The plugin registers a **pet-forge** skill in your harness: ask your agent *"给我做一只粉色章鱼桌宠"* and it will design the sprite sheet, run it through the same pixel audit the bundled whale passes, cut the GIF, install it as a pet pack, and switch to it live — no restart. (Requires ffmpeg on PATH.)
+
 ## Custom pets
 
 Drop a sprite pack into `~/.dsh/whale-on-desk/pets/<name>/` — a `manifest.json` mapping states to GIF files, plus the GIFs:
