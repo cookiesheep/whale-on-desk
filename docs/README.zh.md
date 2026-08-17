@@ -44,7 +44,17 @@ dsh plugin --profile web add whale-on-desk
 dsh plugin --profile web remove whale-on-desk
 ```
 
-睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。右键点鲸鱼有小菜单(静音 / 回到默认位置)。配置 `allowPreview: true` 会额外开启 `POST /whale/preview {"state":"glass-tap"}`(传 `{"state":null}` 恢复)——方便录演示和截图,默认关闭。
+睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。右键点鲸鱼有小菜单(静音 / 回到默认位置 / 换桌宠 / 隐藏——隐藏后双击右下角 🐳 恢复)。配置 `allowPreview: true` 会额外开启 `POST /whale/preview {"state":"glass-tap"}`(传 `{"state":null}` 恢复)——方便录演示和截图,默认关闭。
+
+## 自定义桌宠
+
+把一套精灵放进 `~/.dsh/whale-on-desk/pets/<名字>/`——一个把状态映射到 GIF 文件的 `manifest.json`,加上 GIF 本体:
+
+```json
+{ "idle": "idle.gif", "glass-tap": "tap.gif" }
+```
+
+没提供的状态回退到你的 `idle`,没带的文件回退到内置小鲸鱼。右键桌宠即可切换,**立即生效,无需刷新**。相关配置:`pet`(启动时激活的桌宠名)、`petsDir`、`enabled: false`(彻底卸载桌宠)。
 
 ## 工作原理
 

@@ -44,7 +44,17 @@ Then open (or restart) the DSH web UI. That's it — no API key, no config.
 dsh plugin --profile web remove whale-on-desk
 ```
 
-Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10). Right-click the whale for a small menu (mute sounds / reset position). Setting `allowPreview: true` additionally exposes `POST /whale/preview {"state":"glass-tap"}` (clear with `{"state":null}`) — handy for demos and screenshots; off by default.
+Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, default 10). Right-click the whale for a small menu (mute sounds / reset position / switch pet / hide — double-click the corner 🐳 to restore). Setting `allowPreview: true` additionally exposes `POST /whale/preview {"state":"glass-tap"}` (clear with `{"state":null}`) — handy for demos and screenshots; off by default.
+
+## Custom pets
+
+Drop a sprite pack into `~/.dsh/whale-on-desk/pets/<name>/` — a `manifest.json` mapping states to GIF files, plus the GIFs:
+
+```json
+{ "idle": "idle.gif", "glass-tap": "tap.gif" }
+```
+
+States you don't provide fall back to your `idle` sprite, and any file you don't ship falls back to the bundled whale. Right-click the whale to switch pets; the change applies instantly (no reload). Related config: `pet` (pet name to activate at boot), `petsDir`, and `enabled: false` to unmount the overlay entirely.
 
 ## How it works
 
