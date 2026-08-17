@@ -3,3 +3,5 @@ node_modules/
 *.log
 assets/.build/
 .omx/
+.tmp-demo/
+*.local.md

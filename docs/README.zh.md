@@ -7,7 +7,7 @@ Agent 干活时它游泳,调工具时吐泡泡,**请求批准时贴着屏幕敲�
 
 ![status](https://img.shields.io/badge/status-早期预览-orange) ![license](https://img.shields.io/badge/license-MIT-blue) ![dsh](https://img.shields.io/badge/DSH-插件-4D6BFE)
 
-<!-- 演示动图位: docs/demo.gif -->
+![演示](../media/demo.gif)
 
 ## 它会做什么
 

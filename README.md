@@ -7,7 +7,7 @@ It swims while your agents work, blows bubbles for tool calls, and taps the glas
 
 ![status](https://img.shields.io/badge/status-early%20preview-orange) ![license](https://img.shields.io/badge/license-MIT-blue) ![dsh](https://img.shields.io/badge/DSH-plugin-4D6BFE)
 
-<!-- demo gif placeholder: docs/demo.gif — add once glass-tap art lands -->
+![demo](docs/media/demo.gif)
 
 ## What it does
 
