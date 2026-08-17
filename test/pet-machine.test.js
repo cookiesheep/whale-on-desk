@@ -120,6 +120,19 @@ test('pokes do not displace a pending approval', () => {
   assert.equal(m.snapshot.state, 'glass-tap')
 })
 
+test('turns open with a greeting; compaction curls up until it ends', () => {
+  const m = new PetMachine()
+  m.push({ type: 'turn/start', turn: 1 })
+  assert.equal(m.snapshot.state, 'greet')
+  assert.equal(m.clearTransient().state, 'swim-fast')
+  m.push({ type: 'compaction/start' })
+  assert.equal(m.snapshot.state, 'compact')
+  m.push({ type: 'assistant/chunk', turn: 1, step: 1, chunkType: 'text-delta' })
+  assert.equal(m.snapshot.state, 'compact')
+  m.push({ type: 'compaction/end' })
+  assert.equal(m.snapshot.state, 'swim-fast')
+})
+
 test('morning removes the nightcap', () => {
   const m = new PetMachine()
   m.push({ type: 'session/idle', idleMs: 11 * 60 * 1000, hour: 3 })
