@@ -18,6 +18,11 @@ The whale lives in the corner of your DeepSeek Harness web UI and reacts to what
 | Turn running | swims fast 🏊 |
 | Model streaming | thinks along, thought bubble 💭 |
 | Tool call | blows a bubble with a friendly label (敲命令 / 读文件 / …) |
+| Turn finishes | speaks up: "搞定! 3 分 12 秒,跑了 8 个工具,改了 5 个文件" |
+| Approval waiting | taps the glass; the browser tab title flashes 🔔 |
+| Context filling | eats; past 84% it sinks 📉 |
+| Idle 5 min | asks for work ("我闲着呢,有活吗?") |
+| 10 min idle / late night | sleeps, or wears a nightcap 🌙 |
 | **Approval requested** | **presses against the glass, taps, amber pulse** 🔔 |
 | Turn completed | jumps with a flip and foam confetti 🎉 |
 | Turn failed | sinks, eyes flatline 😢 |

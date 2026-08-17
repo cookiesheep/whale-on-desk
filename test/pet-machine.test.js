@@ -19,9 +19,23 @@ test('approval waits outrank work states', () => {
 test('successful turn celebrates then settles', () => {
   const m = new PetMachine()
   m.push({ type: 'turn/start', turn: 1 })
-  m.push({ type: 'turn/end', turn: 1, reason: 'complete' })
+  m.push({ type: 'turn/end', turn: 1, reason: 'complete', secs: 192, tools: 8, edits: 5 })
   assert.equal(m.snapshot.state, 'celebrate')
+  assert.deepEqual(m.snapshot.hint, { kind: 'done', secs: 192, tools: 8, edits: 5 })
   assert.equal(m.clearTransient().state, 'idle')
+  assert.equal(m.snapshot.hint.kind, 'done')
+})
+
+test('failed turns stay quiet; long idleness asks for work once', () => {
+  const m = new PetMachine()
+  m.push({ type: 'turn/end', turn: 1, reason: 'error', secs: 10, tools: 1, edits: 0 })
+  assert.equal(m.snapshot.hint.kind, 'none')
+  m.push({ type: 'session/idle', idleMs: 5 * 60 * 1000 })
+  assert.deepEqual(m.snapshot.hint, { kind: 'bored' })
+  m.push({ type: 'turn/start', turn: 2 })
+  assert.equal(m.snapshot.hint.kind, 'none')
+  m.push({ type: 'session/idle', idleMs: 1000 })
+  assert.equal(m.snapshot.hint.kind, 'none')
 })
 
 test('failed turn sinks', () => {
