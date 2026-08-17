@@ -62,7 +62,9 @@ Install either once (`dsh plugin --profile web add dsh-plugin-toggle`), and day-
 
 ## Aquarium mode
 
-Right-click the whale → **🐠 水族馆** for a fullscreen tank: light rays, a rising bubble curtain, and the whale swimming free with a couple of smaller companions. Esc (or the ✕ button) brings back the companion.
+![aquarium](docs/media/aquarium.gif)
+
+Right-click the whale → **🐠 水族馆** for a fullscreen tank: painted water plates (auto light/dark), seaweed, a progress coral that grows with your tool calls, token fish counting the turn's tools — and the whale itself mirrors the agent state, tapping the glass (buoy blinking) when an approval waits. The water layer stays translucent and click-through: you keep coding inside it. Esc (or the ✕ button) brings back the companion.
 
 ## Custom pets
 
