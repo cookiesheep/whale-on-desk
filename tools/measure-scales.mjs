@@ -26,6 +26,8 @@ const STATES = {
   eat: 'eat.png', sink: 'sink.png', sleep: 'sleep.png', nightcap: 'nightcap.png',
   startled: 'startled.png', 'poked-flail': 'poked-flail.png', greet: 'greet.png',
   compact: 'compact.png',
+  proud: 'proud.png', shy: 'shy.png', suspicious: 'suspicious.png',
+  excited: 'excited.png', 'sad-puppy': 'sad-puppy.png',
 }
 
 const out = {}
