@@ -2,46 +2,43 @@
 
 English | [中文](docs/README.zh.md)
 
-**A pixel-art whale companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
-It swims while your agents work, blows bubbles for tool calls, and taps the glass when an approval is waiting.
+**A pixel-art whale companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — one that actually knows what your agents are doing.**
 
-![status](https://img.shields.io/badge/status-early%20preview-orange) ![license](https://img.shields.io/badge/license-MIT-blue) ![dsh](https://img.shields.io/badge/DSH-plugin-4D6BFE)
+Start a long task, walk away, and come back when the whale tells you it's done. It reports finished turns with real numbers, taps the glass (and flashes your tab title) when an approval is waiting, and counts your tool calls as a school of fish.
+
+![npm](https://img.shields.io/npm/v/whale-on-desk) ![license](https://img.shields.io/badge/license-MIT-blue) ![dsh](https://img.shields.io/badge/DSH-plugin-4D6BFE) ![states](https://img.shields.io/badge/states-14-23324D)
 
 ![demo](docs/media/demo.gif)
 
-## What it does
-
-The whale lives in the corner of your DeepSeek Harness web UI and reacts to what your agents are doing:
+## Why it's not just a sticker
 
 | Agent activity | Whale reaction |
 |---|---|
-| Turn running | swims fast 🏊 |
-| Model streaming | thinks along, thought bubble 💭 |
-| Tool call | blows a bubble with a friendly label (敲命令 / 读文件 / …) |
-| Turn finishes | speaks up: "搞定! 3 分 12 秒,跑了 8 个工具,改了 5 个文件" |
-| Approval waiting | taps the glass; the browser tab title flashes 🔔 |
-| Context filling | eats; past 84% it sinks 📉 |
+| Turn starts | waves hello, then gets to work 👋 |
+| Model streaming | thinks along / swims laps 💭 |
+| Tool call | blows a labeled bubble (敲命令 / 读文件 / …) |
+| **Turn finishes** | **speaks up: "搞定! 3 分 12 秒,跑了 8 个工具,改了 5 个文件"** |
+| **Approval waiting** | **taps the glass; the browser tab title flashes 🔔** |
+| Context filling | eats at 62%/82%, sinks past 84% 📉 |
+| Compaction | curls into a ball to digest |
 | Idle 5 min | asks for work ("我闲着呢,有活吗?") |
 | 10 min idle / late night | sleeps, or wears a nightcap 🌙 |
-| **Approval requested** | **presses against the glass, taps, amber pulse** 🔔 |
-| Turn completed | jumps with a flip and foam confetti 🎉 |
-| Turn failed | sinks, eyes flatline 😢 |
-| Context ~62% / ~82% full | feeding time — "还能吃一点 / 吃饱了" 🍤 |
-| Idle 10 minutes | dozes off 💤 |
-| 00:00–06:00 local | nightcap 🌙 |
-| You click / double-click it | squeak / startled flail (with sound) |
+| You click / pet / poke it | quips, purrs, startled flail (synth sounds, zero assets) |
 
-Drag it anywhere — the position sticks. Tiny synthesized sounds, zero audio assets.
+Every sprite ships only after a frame-by-frame pixel audit — exact 8-color palette, zero debris, seamless loops.
 
-## Install
+## Install (30 seconds)
 
 ```sh
 dsh plugin --profile web add whale-on-desk
 ```
 
-**[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)** (the community Electron app) works too — it runs the official web client with the same plugin system and DSH home. From the app tray, open **Open DSH Terminal** and run `dsh plugin add whale-on-desk`, then restart DSH Desktop.
+Open (or restart) the DSH web UI — that's it, no API key, no config. Works in the [community DSH Desktop app](https://github.com/anywhere-labs/deepseek-harness-desktop) too: tray → **Open DSH Terminal** → `dsh plugin add whale-on-desk` → restart the app.
 
-Then open (or restart) the DSH web UI. That's it — no API key, no config.
+## Two more tricks
+
+- **⌘ Command palette** (right-click the whale): DSH ships a full command registry but the web UI never got a launcher — the whale brought one. Filter, run, no model turn spent.
+- **🐠 Aquarium mode** (right-click): a painted water skin over your working UI — keep coding inside the tank while the whale mirrors your agent, token fish count tool calls, a coral grows with your progress, and a depth gauge reads the context window.
 
 ## Uninstall / configure
 
