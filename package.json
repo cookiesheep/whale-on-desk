@@ -1,6 +1,6 @@
 {
   "name": "whale-on-desk",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "A pixel-art whale desktop companion for DeepSeek Harness — it swims while your agents work and taps the glass when an approval is waiting.",
   "license": "MIT",
   "type": "module",

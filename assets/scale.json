@@ -68,11 +68,51 @@
     "dyf": 0.08
   },
   "excited": {
+    "s": 1.385,
+    "dyf": 0.289
+  },
+  "sad-puppy": {
+    "s": 0.7,
+    "dyf": 0.002
+  },
+  "review": {
+    "s": 0.778,
+    "dyf": 0.078
+  },
+  "push": {
     "s": 1,
     "dyf": 0.18
   },
-  "sad-puppy": {
-    "s": 0.85,
-    "dyf": 0.06
+  "error-spiral": {
+    "s": 0.7,
+    "dyf": 0.091
+  },
+  "success-streak": {
+    "s": 0.814,
+    "dyf": -0.006
+  },
+  "token-fountain": {
+    "s": 0.862,
+    "dyf": 0.219
+  },
+  "chase-fish": {
+    "s": 1.4,
+    "dyf": 0.144
+  },
+  "hide-and-seek": {
+    "s": 0.837,
+    "dyf": 0.052
+  },
+  "bubble-ring": {
+    "s": 1.4,
+    "dyf": 0.231
+  },
+  "birthday": {
+    "s": 0.954,
+    "dyf": 0.159
+  },
+  "shrimp": {
+    "s": 1.125,
+    "dyf": 0.186
   }
 }

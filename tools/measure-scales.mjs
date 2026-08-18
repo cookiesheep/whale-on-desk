@@ -28,6 +28,10 @@ const STATES = {
   compact: 'compact.png',
   proud: 'proud.png', shy: 'shy.png', suspicious: 'suspicious.png',
   excited: 'excited.png', 'sad-puppy': 'sad-puppy.png',
+  review: 'review.png', push: 'push.png', 'error-spiral': 'error-spiral.png',
+  'success-streak': 'success-streak.png', 'token-fountain': 'token-fountain.png',
+  'chase-fish': 'chase-fish.png', 'hide-and-seek': 'hide-and-seek.png',
+  'bubble-ring': 'bubble-ring.png', birthday: 'birthday.png', shrimp: 'shrimp.png',
 }
 
 const out = {}
