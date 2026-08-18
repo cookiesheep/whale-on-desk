@@ -1,6 +1,6 @@
 # whale-on-desk 🐳
 
-English | [中文](docs/README.zh.md)
+English | [中文](docs/README.zh.md) | [🏠 Landing site](https://cookiesheep.github.io/whale-on-desk/)
 
 **A pixel-art whale companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — one that actually knows what your agents are doing.**
 
