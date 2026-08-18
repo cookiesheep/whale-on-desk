@@ -150,7 +150,7 @@ test('context feed fires on threshold crossings, not bands', () => {
   assert.equal(m.snapshot.hint.kind, 'context')
   assert.equal(m.clearTransient().hint.kind, 'none')
   m.push({ type: 'clock/tick', hour: 14, contextUsedPct: 66 })
-  assert.notOk(['eat', 'shrimp'].includes(m.snapshot.state))
+  assert.ok(!['eat', 'shrimp'].includes(m.snapshot.state))
   m.push({ type: 'clock/tick', hour: 14, contextUsedPct: 90 })
   assert.equal(m.snapshot.state, 'sink')
 })
