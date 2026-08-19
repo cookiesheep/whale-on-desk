@@ -49,6 +49,12 @@ dsh plugin --profile web remove whale-on-desk
 
 睡眠超时可在 `cordis.patch.yml` 配置(`sleepAfterMinutes`,默认 10)。右键点鲸鱼有小菜单(静音 / 回到默认位置 / 换桌宠 / 隐藏——隐藏后双击右下角 🐳 恢复)。配置 `allowPreview: true` 会额外开启 `POST /whale/preview {"state":"glass-tap"}`(传 `{"state":null}` 恢复)——方便录演示和截图,默认关闭。
 
+## 成长系统与 Agent 语音
+
+**鲸鱼会陪你长大**——完成任务获得经验,开启会话获得经验,陪伴时长持续累积。8 个称号等你解锁。升级和解锁称号时鲸鱼开口庆祝。悬停可见等级、称号和经验进度。零负反馈:永不扣分,永不惩罚。
+
+**whale_say 工具**——你的 Agent 可以让鲸鱼说话和表演。鲸鱼成了 Agent 的通知通道。
+
 ## 水族馆模式
 
 ![水族馆](docs/media/aquarium.gif)

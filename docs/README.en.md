@@ -57,6 +57,12 @@ Sleep timeout is configurable in `cordis.patch.yml` (`sleepAfterMinutes`, defaul
 
 Install either once (`dsh plugin --profile web add dsh-plugin-toggle`), and day-to-day management stays in the UI. The whale's own right-click menu also has hide/show, and `enabled: false` in its config unmounts it entirely.
 
+## Growth & the agent's voice
+
+**The whale grows with you** — tasks completed grant XP, sessions grant XP, active time accumulates. Eight titles to unlock. Level-ups and title unlocks appear as speech bubbles. Zero negative feedback: no decay, no penalty. Hover to see Lv, title, and XP progress.
+
+**whale_say tool** — your agent can make the whale speak or perform states. This turns the whale into the agent's notification channel.
+
 ## Aquarium mode
 
 ![aquarium](../media/aquarium.gif)
